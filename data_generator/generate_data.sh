@@ -20,7 +20,7 @@ for _ in range(1000):
     data.append({
         "id": fake.uuid4(),
         "nome": fake.name(),
-        "idade": np.random.randint(18, 60),
+        "idade": np.random.randint(-50, 300),
         "doenca": fake.word(ext_word_list=["HIV", "Sífilis", "Gonorreia", "HPV"]),
         "localidade": fake.city(),
         "data_teste": fake.date_this_decade().isoformat()
@@ -28,5 +28,6 @@ for _ in range(1000):
 
 df = pd.DataFrame(data)
 df.to_csv("/vagrant/dados_ist.csv", index=False)
+df.to_json("/vagrant/dados_ist.json", orient="records", lines=True)
 print("Dados gerados com sucesso!")
 EOF
